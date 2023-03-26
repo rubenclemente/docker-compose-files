@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+    portainer:
+        image: portainer/portainer-ce:latest
+        ports:
+            - 8000:8000
+            - 9443:9443
+        volumes:
+            - portainer_data:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+        restart: unless-stopped
+volumes:
+    portainer_data:
+
+
+# $ docker compose up -d
+
+#$ docker volume create portainer_data
+
+#$ docker run -d \
+#  -p 8000:8000
+#  -p 9443:9443 \
+#  --name portainer \
+#  --restart unless-stopped \
+#  -v portainer_data:/data \
+#  -v /var/run/docker.sock:/var/run/docker.sock \
+#  portainer/portainer-ce:latest
+
+# https://localhost:9443
