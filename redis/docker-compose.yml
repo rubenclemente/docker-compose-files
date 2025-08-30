@@ -1,0 +1,13 @@
+
+services:
+  redis:
+    build: .
+    container_name: my-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    command: ["sh", "-c", "exec redis-server /usr/local/etc/redis/redis.conf --requirepass $$REDIS_PASSWORD"]
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
